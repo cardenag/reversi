@@ -92,7 +92,7 @@ socket.on('join_room_response', function(payload){
 });
 
 /* What to do when when the server says that someone has left a room */
-socket.on('player_disconnected',function(payload){
+socket.on('player_disconnected', function(payload){
 	if (payload.result == 'fail'){
 		alert(payload.message);
 		return;
@@ -107,15 +107,15 @@ socket.on('player_disconnected',function(payload){
 	var dom_elements = $('.socket_'+payload.socket_id);
 	
 	/* If something exists */
-	if (dom_elements.length != 0){
+	if(dom_elements.length  != 0){
 		dom_elements.slideUp(1000);
 	}
 	
-	/* Manage the message that a new player left*/
+	/* Manage the message that a new player left */
 	var newHTML = '<p>'+payload.username+' has left the lobby</p>';
 	var newNode = $(newHTML);
-	nnewNode.hide();
-	$('#messages').append(newNode);
+	newNode.hide();
+	$('#messages').prepend(newNode);
 	newNode.slideDown(1000);
 });
 
