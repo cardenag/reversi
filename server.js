@@ -41,9 +41,9 @@ var players = [];
 
 var io = require('socket.io').listen(app);
 
-io.sockets.on('connection', function(socket){
+io.sockets.on('connection', function (socket) {
 	
-	log('Client connection by ' + socket.id);
+	log('Client connection by '+socket.id);
 	
 	function log(){
 		var array = ['*** Server Log Message: '];
@@ -76,7 +76,7 @@ io.sockets.on('connection', function(socket){
 	}
 	*/
 	
-	socket.on('join_room', function(payload) {
+	socket.on('join_room', function(payload){
 		log('\'join_room\' command'+JSON.stringify(payload));
 	
 	/* Check that the client sent a payload */
@@ -115,9 +115,9 @@ io.sockets.on('connection', function(socket){
 		}		
 	
 	/* Store information about this new player */
-		players[socket.id]= {};
-		players[socket.id].username=username;
-		players[socket.id].room=room;
+		players[socket.id] = {};
+		players[socket.id].username = username;
+		players[socket.id].room = room;
 	
 		/* Actually have the user join the room */
 		socket.join(room);
@@ -135,7 +135,7 @@ io.sockets.on('connection', function(socket){
 								membership: numClients
 							};
 		
-		io.in(room).emit('join_room_response', success_data);
+		io.in(room).emit('join_room_response',success_data);
 	
 	for(var socket_in_room in roomObject.sockets){
 		var success_data = 	{
@@ -146,7 +146,7 @@ io.sockets.on('connection', function(socket){
 								membership: numClients
 							};
 	
-	socket.emit('join_room_reponse', success_data);
+	socket.emit('join_room_response',success_data);
 }
 log('join_room success');			  
 	});
@@ -184,7 +184,7 @@ log('join_room success');
 	}
 	*/
 	socket.on('send_message', function(payload){
-		log('server received a command', 'send_message', payload);
+		log('server received a command','send_message',payload);
 		if(('undefined' === typeof payload) || !payload){
 		   var error_message = 'send_message had no payload, command aborted';
 			log(error_message);
@@ -229,7 +229,7 @@ log('join_room success');
 		}
 		
 		var success_data = 	{
-								result: 'Success',
+								result: 'success',
 								username: username,
 								message: message
 							};
