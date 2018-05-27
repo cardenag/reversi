@@ -66,7 +66,7 @@ io.sockets.on('connection', function(socket){
 		'result'	: 'success',
 		'room' 		: room joined,
 		'username' 	: username that joined,
-		'socket_id	: the socket if of the person that joined,'
+		'socket_id'	: the socket id of the person that joined,
 		'membership': number of people in the room including the new one
 	}
 	or 
@@ -76,8 +76,7 @@ io.sockets.on('connection', function(socket){
 	}
 	*/
 	
-	socket.on('join_room', function(payload){
-			  
+	socket.on('join_room', function(payload) {
 		log('\'join_room\' command'+JSON.stringify(payload));
 	
 	/* Check that the client sent a payload */
@@ -152,13 +151,12 @@ io.sockets.on('connection', function(socket){
 log('join_room success');			  
 	});
 	
-			socket.on('disconnect', function(socket){
-		log('Client disconnected' +JSON.stringify(players[socket.id]));
+	socket.on('disconnect', function(){
+		log('Client disconnected ' +JSON.stringify(players[socket.id]));
 				if('undefined' !== typeof players[socket.id] && players[socket.id]){
 					var username = players[socket.id].username;
 					var room = players[socket.id].room;
 					var payload = {
-					
 									username: username,
 									socket_id: socket.id
 									};

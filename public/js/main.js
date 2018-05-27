@@ -39,15 +39,16 @@ socket.on('join_room_response', function(payload){
 		return;
 	}
 	
-	/* If we are being notified that we joined the room, then ignore it */
+/* If we are being notified that we joined the room, then ignore it */
 	if(payload.socket_id == socket.id){
 		return;
 	}
 	
-	/* If someone joined then add a new row to the lobby table */
-	var dom_element = $('.socket_'+payload.socket_id);
+/* If someone joined then add a new row to the lobby table */
+	var dom_elements = $('.socket_'+payload.socket_id);
+	
 	/* If we don't already havce an entry for this person */
-	if (dom_element.length  == 0){
+	if (dom_elements.length  == 0){
 		var nodeA = $('<div></div>');
 		nodeA.addClass('socket_'+payload.socket_id);
 		
@@ -79,10 +80,10 @@ socket.on('join_room_response', function(payload){
 	else{
 		var buttonC = makeInviteButton();
 		$('.socket_'+payload.socket_id+' button' ).replaceWith(buttonC);
-		dom_element.slideDown(1000);
+		dom_elements.slideDown(1000);
 	}	
 	
-	/* Manage the message that a new player has joined*/
+	/* Manage the message that a new player has joined */
 	var newHTML = '<p>'+payload.username+' just entered the lobby</p>';
 	var newNode = $(newHTML);
 	newNode.hide();
@@ -103,11 +104,11 @@ socket.on('player_disconnected', function(payload){
 	}
 	
 	/* If someone left the room then animate out all their content */
-	var dom_element = $('.socket_'+payload.socket_id);
+	var dom_elements = $('.socket_'+payload.socket_id);
 	
 	/* If something exists */
-	if(dom_element.length  != 0){
-		dom_element.slideUp(1000);
+	if(dom_elements.length  != 0){
+		dom_elements.slideUp(1000);
 	}
 	
 	/* Manage the message that a new player left*/
@@ -139,7 +140,7 @@ function send_message(){
 
 
 function makeInviteButton() { 
-	var newHTML = '<button type="button" class="btn btn-outline-primary">Invite</button>';
+	var newHTML = '<button type=\'button\' class=\'btn btn-outline-primary\'>Invite</button>';
 	var newNode = $(newHTML);
 	return(newHTML);
 }
