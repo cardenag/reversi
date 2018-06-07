@@ -225,7 +225,7 @@ socket.on('send_message_response',function(payload){
 });
 
 function makeInviteButton(socket_id) {
-	var newHTML = '<button type=\'button\' class=\'btn btn-outline-primary\'>Invite</button>';
+	var newHTML = '<button type=\'button\' class=\'btn btn-outline-primary\'>Challenge</button>';
 	var newNode = $(newHTML);
 	newNode.click(function(){
 		invite(socket_id);
@@ -234,7 +234,7 @@ function makeInviteButton(socket_id) {
 }
 
 function makeInvitedButton(socket_id) { 
-	var newHTML = '<button type=\'button\' class=\'btn btn-primary\'>Invited</button>';
+	var newHTML = '<button type=\'button\' class=\'btn btn-primary\'>Challenged</button>';
 	var newNode = $(newHTML);
 	newNode.click(function(){
 		uninvite(socket_id);
@@ -243,7 +243,7 @@ function makeInvitedButton(socket_id) {
 }
 
 function makePlayButton(socket_id) {
-	var newHTML = '<button type=\'button\' class=\'btn btn-success\'>Play</button>';
+	var newHTML = '<button type=\'button\' class=\'btn btn-success\'>Battle</button>';
 	var newNode = $(newHTML);
 	newNode.click(function(){
 		game_start(socket_id);
@@ -252,7 +252,7 @@ function makePlayButton(socket_id) {
 }
 
 function makeEngagedButton() {
-	var newHTML = '<button type=\'button\' class=\'btn btn-danger\'>Engaged</button>';
+	var newHTML = '<button type=\'button\' class=\'btn btn-danger\'>Fight</button>';
 	var newNode = $(newHTML);
 	return(newNode);
 }
@@ -265,7 +265,7 @@ $(function(){
 	console.log('*** Client Log Message: \'join_room\' payload: ' +JSON.stringify(payload));
 	socket.emit('join_room', payload);
 	
-	$('#quit').append('<a href="lobby.html?username='+username+'" class="btn btn-danger btn-default active" role="button" aria-pressed="true">Quit</a>');
+	$('#quit').append('<a href="lobby.html?username='+username+'" class="btn btn-danger btn-default active" role="button" aria-pressed="true">Give Up</a>');
 });
 
 var old_board = [
@@ -315,8 +315,8 @@ else{
 	return;
 }
 		
-		$('#my_color').html('<h3 id="my_color">I am '+my_color+'</h3>');
-	$('#my_color').append('<h4>It is '+payload.game.whose_turn+'\'s turn Elapased time <span id="elapsed"></span></h4>');
+		$('#my_color').html('<h3 id="my_color">I am the '+my_color+' ninja</h3>');
+	$('#my_color').append('<h4>It is the '+payload.game.whose_turn+' ninja\'s turn. Elapased time: <span id="elapsed"></span></h4>');
 	clearInterval(interval_timer);
 	interval_timer=setInterval(function(last_time){
 		return function() {

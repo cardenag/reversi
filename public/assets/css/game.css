@@ -1,24 +1,64 @@
+
 body {
-	background-image: url('../images/green.png');	
+	background-image: url('../images/black.png');	
 	} 
 table#game_board{
 	margin: auto;
 	border-style: solid;
 	border-width: 10px;
-	border-color: rgb(100,100,100);
+	border-color: white;
 }
 table#game_board td{
 	padding: 5px;
 	border-style: solid;
 	border-width: 1px;
-	border-color: rgb(50,50,50);
+	border-color: white;
+}
+.light_blue{
+background: #7373f4;
+}
+.dark_blue{
+background: #4037c0;
 }
 
 #messages p {
+	color: white;
 	margin: 0px;
 }
+
+#mess_title {
+	color: white;
+	font-family: 'Comfortaa', cursive;
+	font-size: 150%;
+}
+
+#game_over {
+	color: white;
+	font-family: 'Monoton', cursive;
+	font-size: 250%;
+}
+
+#whitesum {
+	color: white;    	
+	font-family: 'Fredoka One', cursive;
+	font-size: 200%;
+}
+
+#blacksum {
+	color: white;
+	font-family: 'Fredoka One', cursive;
+	font-size: 200%;
+}
+
+#my_color{
+	color: white;
+	font-family: 'Comfortaa', cursive;
+	font-size: 150%;
+}
+
 
 td.hovered_over:hover {
 background:url('../images/hover.gif');
 background-size: 100% 100%;s
+}.start {
 }
